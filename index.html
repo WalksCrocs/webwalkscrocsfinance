@@ -2,27 +2,27 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WalksCrocs Pembukuan</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembukuan WalksCrocs</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="container">
-    <img src="walkscrocs-logo.png" alt="WalksCrocs Logo" class="logo" />
-    <h1>Pembukuan Penjualan</h1>
+    <h1>Pembukuan WalksCrocs</h1>
     <form id="form">
-      <input type="text" id="penginput" placeholder="Nama Penginput" required />
-      <input type="text" id="customer" placeholder="Nama Customer" required />
       <input type="date" id="tanggal" required />
-      <input type="number" id="masuk" placeholder="Uang Masuk" />
-      <input type="number" id="keluar" placeholder="Uang Keluar" />
-      <input type="text" id="metode" placeholder="Metode Pembayaran" />
-      <input type="number" id="dp" placeholder="DP" />
-      <input type="number" id="kekurangan" placeholder="Kekurangan" />
-      <textarea id="keterangan" placeholder="Keterangan Tambahan"></textarea>
-      <button type="submit">Simpan</button>
+      <input type="text" id="customer" placeholder="Nama Customer" required />
+
+      <select id="jenis" required>
+        <option value="Uang Masuk">Uang Masuk</option>
+        <option value="Uang Keluar">Uang Keluar</option>
+      </select>
+
+      <input type="number" id="jumlah" placeholder="Jumlah (Rp)" required />
+      <input type="text" id="keterangan" placeholder="Keterangan (DP / Lunas / Barang / Catatan)" required />
+      <input type="text" id="metode" placeholder="Metode Pembayaran" required />
+      
+      <button type="submit">Simpan & Kirim WA</button>
     </form>
 
     <h2>Riwayat Transaksi</h2>
