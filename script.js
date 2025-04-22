@@ -1,48 +1,48 @@
+const form = document.getElementById("form");
+const container = document.getElementById("data-container");
+let data = [];
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBOcF8cEFiG9x5f8Tjjch5BGLs1PYMd7rk",
-  authDomain: "walkscrocs-db.firebaseapp.com",
-  databaseURL: "https://walkscrocs-db-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "walkscrocs-db",
-  storageBucket: "walkscrocs-db.appspot.com",
-  messagingSenderId: "750633501958",
-  appId: "1:750633501958:web:041ce83d3d6d997ce6403a"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database().ref("transaksi");
-
-document.getElementById("form").addEventListener("submit", function(e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
-  const data = {
-    penginput: document.getElementById("penginput").value,
-    customer: document.getElementById("customer").value,
-    tanggal: document.getElementById("tanggal").value,
-    masuk: document.getElementById("masuk").value,
-    keluar: document.getElementById("keluar").value,
-    metode: document.getElementById("metode").value,
-    dp: document.getElementById("dp").value,
-    kekurangan: document.getElementById("kekurangan").value,
-    keterangan: document.getElementById("keterangan").value,
-    timestamp: Date.now()
-  };
-  db.push(data);
-  this.reset();
+
+  const tanggal = document.getElementById("tanggal").value;
+  const customer = document.getElementById("customer").value;
+  const jenis = document.getElementById("jenis").value;
+  const jumlah = document.getElementById("jumlah").value;
+  const keterangan = document.getElementById("keterangan").value;
+  const metode = document.getElementById("metode").value;
+
+  const entry = { tanggal, customer, jenis, jumlah, keterangan, metode };
+  data.push(entry);
+  displayData();
+
+  // Format pesan WhatsApp
+  const message = encodeURIComponent(
+    `📌 Transaksi Baru:\n` +
+    `Tanggal: ${tanggal}\n` +
+    `Customer: ${customer}\n` +
+    `${jenis}: Rp ${jumlah}\n` +
+    `Keterangan: ${keterangan}\n` +
+    `Metode Pembayaran: ${metode}`
+  );
+
+  // Kirim ke WhatsApp
+  const phone = "6285171002907";
+  window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+  form.reset();
 });
 
-db.on("value", (snapshot) => {
-  const container = document.getElementById("data-container");
+function displayData() {
   container.innerHTML = "";
-  const data = snapshot.val();
-  for (let key in data) {
-    const d = data[key];
+  data.forEach((d) => {
     container.innerHTML += `
       <div class="entry">
-        <strong>${d.tanggal}</strong> - ${d.penginput} | ${d.customer}<br />
-        Masuk: <b>${d.masuk || 0}</b> | Keluar: <b>${d.keluar || 0}</b><br />
-        Metode: ${d.metode} | DP: ${d.dp || 0} | Kekurangan: ${d.kekurangan || 0}<br />
-        <i>${d.keterangan}</i>
+        <strong>${d.tanggal}</strong><br/>
+        ${d.customer} | ${d.keterangan}<br/>
+        ${d.jenis}: Rp ${d.jumlah}<br/>
+        Metode: ${d.metode}
       </div>
     `;
-  }
-});
+  });
+}
