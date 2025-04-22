@@ -1,21 +1,14 @@
-
 body {
   font-family: Arial, sans-serif;
-  background: #f6fff0;
+  background: #FFFFFF;
   color: #333;
   margin: 0;
   padding: 0;
 }
 .container {
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-}
-.logo {
-  width: 150px;
-  display: block;
-  margin: 0 auto 20px;
-  filter: drop-shadow(2px 4px 6px #84BD00);
 }
 h1, h2 {
   text-align: center;
@@ -26,7 +19,7 @@ form {
   gap: 10px;
   margin-bottom: 30px;
 }
-input, textarea {
+input, select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -40,10 +33,10 @@ button {
   cursor: pointer;
 }
 button:hover {
-  background-color: #6da800;
+  background-color: #6aa200;
 }
 #data-container {
-  background: white;
+  background: #f9f9f9;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
